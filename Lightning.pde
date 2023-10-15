@@ -18,9 +18,11 @@ void mousePressed()
 }
 
 void drawLightning() {
-  // the random weights with lightning movement does not get the desired result,
-  // we would need to be able to control the general direction/endpoint to do this,
-  // which seems to be outside of the scope of this assignment
+  /*
+  the random weights with lightning movement does not get the desired result,
+  we would need to be able to control the general direction/endpoint to do this,
+  which seems to be outside of the scope of this assignment.
+  */
   color lightingColor = getRandColor();
   int x = sizeX / 2;
   strokeWeight(5);
