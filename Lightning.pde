@@ -1,15 +1,17 @@
-int sizeY = 400;
-int sizeX = 400;
-int increment = 10;
-int[] range = {-9, 9};
-void setup()
-{
-  surface.setSize(sizeX, sizeY);
-  background(0);
+int increment = 5;
+int[] range = {-5, 5};
+PVector[] positions = {new PVector(131, 23), new PVector(477, 156), new PVector(251, 212)};
+
+void setup() {
+  PImage img = loadImage("seattle.jpg");
+  size(631, 360);
+  background(img);
   drawLightning();
 }
 
 void draw() {
+  println(mouseX);
+  println(mouseY);
 }
 
 void mousePressed()
@@ -18,19 +20,30 @@ void mousePressed()
 }
 
 void drawLightning() {
-  /*
-  the random weights with lightning movement does not get the desired result,
-  we would need to be able to control the general direction/endpoint to do this,
-  which seems to be outside of the scope of this assignment.
-  */
+  float x = 0.0;
+  float y = 0.0;
+  // weighted random
+  float randPercent = (float)Math.random();
+  if (randPercent < 0.3) {
+    y = positions[0].y;
+    x = positions[0].x;
+  } else if (randPercent < 0.9) {
+    y = positions[1].y;
+    x = positions[1].x;
+  } else {
+    y = positions[2].y;
+    x = positions[2].x;
+  }
+  // setup colors/size
   color lightingColor = getRandColor();
-  int x = sizeX / 2;
-  strokeWeight(5);
-  for (int y = 0; y < sizeY; y += increment) {
-    int rand = (int)lerp(range[0], range[1], (float)Math.random());
+  strokeWeight(3);
+  float offset = lerp(-2, 2, (float)Math.random());
+  while (y > 0) {
+    float rand = (int)lerp(range[0] + offset, range[1] + offset, (float)Math.random());
     x += rand;
+    y -= increment;
     stroke(lightingColor);
-    line(x - rand, y - increment, x, y);
+    line(x - rand, y + increment, x, y);
   }
 }
 
