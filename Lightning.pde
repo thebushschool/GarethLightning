@@ -1,17 +1,16 @@
-int increment = 5;
+int increment = -5;
 int[] range = {-5, 5};
-PVector[] positions = {new PVector(131, 23), new PVector(477, 156), new PVector(251, 212)};
+PVector[] positions = {new PVector(131, 40), new PVector(477, 156), new PVector(251, 212)};
 
 void setup() {
-  PImage img = loadImage("seattle.jpg");
   size(631, 360);
+  PImage img;
+  img = loadImage("seattle.jpeg");
   background(img);
   drawLightning();
 }
 
 void draw() {
-  println(mouseX);
-  println(mouseY);
 }
 
 void mousePressed()
@@ -41,9 +40,9 @@ void drawLightning() {
   while (y > 0) {
     float rand = (int)lerp(range[0] + offset, range[1] + offset, (float)Math.random());
     x += rand;
-    y -= increment;
+    y += increment;
     stroke(lightingColor);
-    line(x - rand, y + increment, x, y);
+    line(x - rand, y - increment, x, y);
   }
 }
 
