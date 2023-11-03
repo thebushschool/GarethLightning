@@ -1,20 +1,22 @@
 int increment = -5;
 int[] range = {-5, 5};
 PVector[] positions = {new PVector(131, 40), new PVector(477, 156), new PVector(251, 212)};
+PImage img;
 
 void setup() {
   size(631, 360);
-  PImage img;
   img = loadImage("seattle.jpeg");
+  noLoop();
+}
+
+void draw() {
   background(img);
   drawLightning();
 }
 
-void draw() {
-}
-
 void mousePressed()
 {
+  background(img);
   drawLightning();
 }
 
